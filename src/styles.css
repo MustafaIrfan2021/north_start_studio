@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", sans-serif;
+  --font-mono: "DM Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: #060011;
+  color: #f5f4ef;
+  font-family: "Manrope", sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+::selection {
+  background: #c4f135;
+  color: #111;
+}
+body::before {
+  align-items: center;
+  animation: studioIntro 1.25s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  background: #060011;
+  color: #c9bdff;
+  content: "NORTHSTAR / LOADING";
+  display: flex;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  justify-content: center;
+  letter-spacing: 0.18em;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+body::after {
+  animation: studioProgress 1.02s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  background: #b9a6ff;
+  content: "";
+  height: 1px;
+  left: 25%;
+  position: fixed;
+  top: calc(50% + 22px);
+  transform-origin: left;
+  width: 50%;
+  z-index: 101;
+}
+.site-shell {
+  background: #060011;
+}
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(192, 184, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192, 184, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.hero-grid h1 {
+  font-size: clamp(2.7rem, 5.3vw, 5.8rem);
+  line-height: 0.98;
+}
+.hero-aurora {
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(126, 99, 220, 0.2),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 65% 70%,
+      rgba(73, 173, 255, 0.12),
+      transparent 45%
+    );
+  filter: blur(35px);
+  opacity: 0.65;
+}
+.work-band {
+  background: #060011;
+}
+.process-band {
+  background: linear-gradient(125deg, #060011 0%, #100c2b 50%, #060011 100%);
+}
+.contact-band {
+  background: linear-gradient(125deg, #060011 0%, #100c2b 50%, #060011 100%);
+}
+.contact-band > .noise,
+.contact-band > div:nth-child(2) {
+  display: none;
+}
+header {
+  background-color: rgba(6, 0, 17, 0.82) !important;
+}
+@media (max-width: 767px) {
+  header {
+    background-color: rgba(16, 13, 37, 0.82) !important;
+  }
+}
+footer {
+  background-color: #060011 !important;
+}
+.hero-product {
+  animation: productFloat 7s ease-in-out infinite;
+}
+#services a {
+  transition:
+    background-color 0.35s ease,
+    padding-left 0.35s ease,
+    border-color 0.35s ease;
+}
+#services a:hover {
+  padding-left: 1.15rem;
+}
+#work article.group > div {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+#work article.group:hover > div {
+  transform: translateY(-6px);
+}
+@supports (animation-timeline: view()) {
+  #services > div,
+  #work > div,
+  #work + section > div,
+  #process > div,
+  #contact > div {
+    animation: sectionReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 34%;
+  }
+  #services a {
+    animation: rowReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 8% cover 24%;
+  }
+  #services a:nth-child(2) {
+    animation-range: entry 12% cover 28%;
+  }
+  #services a:nth-child(3) {
+    animation-range: entry 16% cover 32%;
+  }
+  #services a:nth-child(4) {
+    animation-range: entry 20% cover 36%;
+  }
+  #services a:nth-child(5) {
+    animation-range: entry 24% cover 40%;
+  }
+  #services a:nth-child(6) {
+    animation-range: entry 28% cover 44%;
+  }
+}
+@keyframes productFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rowReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes studioProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  70% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+@keyframes studioIntro {
+  0%,
+  75% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+}
+.text-balance {
+  text-wrap: balance;
+}
